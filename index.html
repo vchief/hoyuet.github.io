@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/profiles.css"/>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/load.js"></script>
+    <script src="js/move.js"></script>
+    <script src="js/profile.js"></script>
+    <script>
+    $(function(){
+		$('.nav ul li').each(function(i){
+			$(this).click(function(){
+				/*if(i==0){
+					return;
+				}*/
+				$("html,body").animate({scrollTop: $(".hash").eq(i).offset().top}, 1000);
+			});
+		});
+		/*$('#a_profile').click(function(){
+			$("html,body").animate({scrollTop: $("#aProfile").offset().top}, 1000);
+		});*/
+				
+	});
+    </script>
+</head>
+<body>
+<div class="contain">
+    <div class="wrap" id="wrap">
+        <div class="header">
+            <div class="logo">
+                <a href="#" class="logo_t">WELCOME TO HOYUET</a>
+                <a href="" class="logo_b">T H I S&nbsp;&nbsp;&nbsp;&nbsp;I S&nbsp;&nbsp;&nbsp;&nbsp;M Y&nbsp;&nbsp;&nbsp;&nbsp;W E B S I T E</a>
+            </div>
+            <div class="interactive">
+                <div class="search">
+                    <input type="text" id="t1" />
+                    <input type="button" value="SEARCH" class="btn" id="search"/>
+                    <a href="#" id="abtn" type="button"></a>
+
+                </div>
+                <div id="div1">
+                    <ul id="ulsearch">
+                    </ul>
+                </div>
+                <div class="user">
+                    <a href="login.html">LOGIN</a>
+                    <a href="register.html">REGISTER</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav" id="nav">
+            <ul>
+                <li><a href="JavaScript:;" class="on" id="a_home">HOME</a></li>
+                <li><a href="JavaScript:;" id="a_profile">PROFILES</a></li>
+                <li><a href="JavaScript:;" id="a_photo">PHOTOS</a></li>
+                <li><a href="JavaScript:;" class="a_works" id="a_works">WORKS</a>
+                    <div class="works" id="works">
+                        <a href="#" class="color">html</a>
+                        <a href="#" class="color">css</a>
+                        <a href="#" class="color">JS</a>
+                        <a href="#" class="color">jQuery</a>
+                        <a href="#" class="color">sea.js</a>
+                    </div>
+                </li>
+
+                <li><a href="JavaScript:;" class="a_contact" id="a_contact" >CONTACT</a>
+                    <div class="contact" id="contact">
+                        <a href="#" class="color">QQ</a>
+                        <a href="#" class="color">微信</a>
+                        <a href="#" class="color">微博</a>
+                    </div>
+                </li>
+                <li><a href="JavaScript:;" id="a_board">MESSAGE BOARD</a></li>
+            </ul>
+        </div>
+        <div id="fillNav"></div>
+    </div>
+    <!--<div class="fill"></div>-->
+    <div class="main">
+        <div class="time" id="time">
+            <h3>TIME</h3>
+            <p id="time_show"></p>
+        </div>
+        <div class="version"><a href="#">jQuery版</a></div>
+        <div class="hash visible"><a name="home">PROFILES</a></div>
+        <div class="m_home">
+            <img src="image/0.jpg" />
+        </div>
+        <div class="hash"><a name="profile">PROFILES</a></div>
+        <div class="m_profiles" id="m_profiles">
+            <a href="javascript:;" id="prev"></a>
+            <a href="javascript:;" id="next" ></a>
+            <ul id="ul1">
+                <li class="about">
+                    <h2>&nbsp;个人信息</h2>
+                    <table width="1000"  height="400" border="1" align="center" bgcolor="#ccc">
+                        <tr align="center" height="60">
+                            <td width="80" height="40">姓名</td>
+                            <td width="80">任刚</td>
+                            <td width="80">出生年月</td>
+                            <td width="80">1988.11.11</td>
+                            <td width="80">专业</td>
+                            <td width="80">电子信息工程</td>
+                            <td width="80" rowspan="2"><img src="image/self.jpg" width="180"></td>
+                        </tr>
+                        <tr align="center" height="60">
+                            <td width="80">民族</td>
+                            <td width="80">汉</td>
+                            <td width="80">学历</td>
+                            <td width="80">大专</td>
+                            <td width="80">毕业院校</td>
+                            <td width="80">石家庄学院</td>
+
+                        </tr>
+                        <tr align="center" height="60">
+                            <td width="80">籍贯</td>
+                            <td width="80" colspan="3">河北省张家口市蔚县</td>
+
+                            <td width="80">联系电话及邮箱</td>
+                            <td width="80" colspan="2"><p>18201502425</p><p>924892426@qq.com</p></td>
+
+                        </tr>
+                    </table>
+                </li>
+                <li class="about">
+                    <h2>&nbsp;职业技能</h2>
+                    <table width="1000"  height="400" border="1" align="center" bgcolor="#ccc">
+                        <tr align="center" height="60">
+                            <td>
+                            	<p class="jineng"> 1.能将PSD按照div+css制作静态页面</p>
+								<p class="jineng">	2.能够熟练使用javascript、jquery等脚本语</p>
+								<p class="jineng">	3.掌握JavaScript语言DOM、Ajax、JSON等；</p>
+								<p class="jineng">	4.熟练使用CSS+DIV布局,熟练HTML5、CSS3、</p>
+								<p class="jineng">	5.对css/JavaScript性能优化、解决多浏览器兼容性问题、及响应式开发有一定经验；</p>
+								<p class="jineng">	6.会自适应等布局</p>
+								<p class="jineng">	7.熟练使用jqueryMobile移动端开发框架</p> 
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="about">
+                    <h2>&nbsp;项目经验</h2>
+                    <table width="1000"  height="400" border="1" align="center" bgcolor="#ccc">
+                        <tr align="center" height="60">
+                            <td>
+                            	<p class="jineng">1.从网上找项目PSD图，然后做成静态网页，
+                                提高了自己的ps技术和网页设计布局技术</p>
+								<p class="jineng"></p>
+                                <p class="jineng">2.帮助同学分担其项目的一部分，既帮助自己提高了前端编程能力，又帮助了同学，两全其美。</p>
+								<p class="jineng"></p>
+                                <p class="jineng">3.个人网站：http://hoyuet.github.io</p>
+                            
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="about">
+                    <h2>&nbsp;教育经历</h2>
+                    <table width="1000"  height="400" border="1" align="center" bgcolor="#ccc">
+                        <tr align="center" height="60">
+                            <td>
+                            	<p class="jineng">① 2015/10至今&nbsp;&nbsp;  北京智能社前端培训学校&nbsp;&nbsp;   系统学习前端知识</p>
+                                <p class="jineng">&nbsp;&nbsp;通过系统的学习，在前端方面已经有很大的进步，并能独立完成一部分项目。在课余时间，积极学习，遇到不懂的知识点，上网查询，并做详细记录，积累学习经验。</p>
+								<p class="jineng">② 2009/09 —  2012/06 &nbsp;&nbsp; 石家庄学院&nbsp;&nbsp;   电子信息工程专业。</p>
+                                <p class="jineng">&nbsp;&nbsp;在学校期间，我努力学习，多次获得学校奖学金以及国家励志奖学金，得到老师和同学的认可。</p>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="about">
+                    <h2>&nbsp;自我评价</h2>
+                    <table width="1000"  height="400" border="1" align="center" bgcolor="#ccc">
+                        <tr align="center" height="60">
+                            <td width="80" height="40">
+                            	<p class="jineng">&nbsp;&nbsp;为人自信，踏实，正直，诚信，守时，遵守社会道德行为准则。有上进心，</p>
+                                <p  class="jineng"></p>
+                                <p>有强烈的求知欲望，工作态度认真，勤奋能吃苦，有团结精神，有较强的自学能</p>
+                                <p class="jineng"></p>
+                                <p>力，实践应用能力，适应能力强。有良好的沟通能力和团队协作精神，能承受较</p>
+                                <p class="jineng"></p>
+                                <p class="jineng">大的工作压力。</p>
+                            </td>
+
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <div class="hash"><a name="photo">PHOTOS</a></div>
+        <div class="m_photos" id="m_photos">
+            <img src="image/10.jpg" alt="">
+        </div>
+        <div class="hash"><a name="work">WORKS</a></div>
+        <div class="m_works" id="m_works">
+            <div>
+                <span>照片墙效果</span>
+            </div>
+            <div>
+                <span>照片查看效果</span>
+            </div>
+            <div>
+                <span>案例展示</span>
+            </div>
+            <div>
+                <span>手风琴效果</span>
+            </div>
+            <div>
+                <span>手机桌面效果</span>
+            </div>
+            <div>
+                <span>拉勾网效果</span>
+            </div>
+            <div>
+                <span>日历效果</span>
+            </div>
+            <div>
+                <span>轮播图效果</span>
+            </div>
+            <div>
+                <span>图片跟随提示效果</span>
+            </div>
+            <div>
+                <span>智能社官网效果</span>
+            </div>
+        </div>
+        <div class="hash"><a name="cont">CONTACT</a></div>
+        <div class="m_contact">
+            <ul>
+                <li>
+                    <p><img src="image/qq.png" alt=""></p>
+                    <p>QQ:<span>924892426</span></p>
+                    <img src="image/qq2.jpg" alt="">
+                </li>
+                <li>
+                    <p><img src="image/weixin.jpg" alt=""></p>
+                    <p>WX:<span>hoyuet4712</span></p>
+                    <img src="image/weixin2.jpg" alt="">
+                </li>
+                <li>
+                    <p><img src="image/weibo.jpg" alt=""></p>
+                    <p>WB:<span>hoyuet712</span></p>
+                    <img src="image/weibo.png" alt="">
+                </li>
+                <li>
+                    <p><img src="image/tel.jpg" alt=""></p>
+                    <p>TEL:<span>18201502425</span></p>
+                    <!--<img src="image/qq2.jpg" alt="">-->
+                </li>
+            </ul>
+        </div>
+        <div class="hash"><a name="massage">MASSAGE BOARD</a></div>
+        <div class="m_massage_board">
+            <div class="mpic"><img src="image/massage.jpg" alt=""></div>
+            <div id="msgBox">
+                <form>
+                    <!--<h2>来 , 说说你在做什么 , 想什么</h2>-->
+                    <!--<div>-->
+                    <input id="userName" class="f-text" value="请填写姓名" />
+                    <!--<p id="face"><img src="img/face1.gif" class="current" /><img src="img/face2.gif" /><img src="img/face3.gif" /><img src="img/face4.gif" /><img src="img/face5.gif" /><img src="img/face6.gif" /><img src="img/face7.gif" /><img src="img/face8.gif" /></p>-->
+                    <!--</div>-->
+                    <div><textarea id="conBox" class="f-text" >请留言</textarea></div>
+                    <div class="tr">
+                        <p>
+                            <span class="countTxt">还能输入</span><strong class="maxNum" id="maxNum">140</strong><span>个字</span>
+                            <input id="sendBtn" type="button" value="我要留言" title="快捷键 Ctrl+Enter" />
+                        </p>
+                    </div>
+                </form>
+                <div class="list" id="list">
+                    <h3><span>大家在说</span></h3>
+                    <ul id="ulList">
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">新增删除广播功能。</div>
+                                <div class="times"><span>07月05日 15:14</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">新增Ctrl+Enter快捷键发送广播。</div>
+                                <div class="times"><span>07月05日 12:20</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">新增选择头像功能。</div>
+                                <div class="times"><span>07月05日 12:08</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了记录广播时间的功能。</div>
+                                <div class="times"><span>07月04日 16:55</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。</div>
+                                <div class="times"><span>07月04日 08:30</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。</div>
+                                <div class="times"><span>07月04日 08:30</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。</div>
+                                <div class="times"><span>07月04日 08:30</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。</div>
+                                <div class="times"><span>07月04日 08:30</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content">
+                                <div class="userName"><a href="javascript:;">永不上线</a>:</div>
+                                <div class="msgInfo">增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。</div>
+                                <div class="times"><span>07月04日 08:30</span><a class="del" href="javascript:;">删除</a></div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="worksShow">
+        <!--<a href="javascript:;" id="clickMe">CLICK ME</a>-->
+    </div>
+    <div class="footer">
+        <a href="#home">HOME</a>
+        <a href="#profile">PROFILES</a>
+        <a href="#photo">PHOTOS</a>
+        <a href="#work">WORKS</a>
+        <a href="#cont">CONTACT</a>
+        <a href="#massage">MESSAGE BOARD</a>
+    </div>
+    <div class="back" id="back">
+        至顶
+    </div>
+</div>
+<div class="show">
+    <p>×</p>
+    <div class="photoWall">
+        <ul id="ul_Wall">
+            <li><img src="img/0.jpg" ></li>
+            <li><img src="img/1.jpg" ></li>
+            <li><img src="img/2.jpg" ></li>
+            <li><img src="img/3.jpg" ></li>
+            <li><img src="img/4.jpg" ></li>
+            <li><img src="img/5.jpg" ></li>
+            <li><img src="img/6.jpg" ></li>
+            <li><img src="img/7.jpg" ></li>
+            <li><img src="img/8.jpg" ></li>
+        </ul>
+    </div>
+</div>
+<div class="show">
+    <p>×</p>
+    <div class="outer">
+        <img src="img/1111.jpg" alt="小图">
+        <span class="inner"></span>
+    </div>
+    <div class="biger">
+        <div class="imgs">
+            <img src="img/1111.jpg" alt="大图">
+        </div>
+    </div>
+</div>
+<div class="show">
+    <p>×</p>
+    <div id="showpic">
+        <ul id="ulshow">
+            <li><span></span><img src="02/1.jpg" /></li>
+            <li><span></span><img src="02/2.jpg" /></li>
+            <li><span></span><img src="02/3.jpg" /></li>
+            <li><span></span><img src="02/4.jpg" /></li>
+            <li><span></span><img src="02/5.jpg" /></li>
+            <li><span></span><img src="02/6.jpg" /></li>
+        </ul>
+        <div id="line"></div>
+    </div>
+</div>
+<div class="show">
+    <p>×</p>
+    <ul id="ulfc">
+        <li>
+            <span style="background:yellow;">第一项</span>
+            <img src="03/0.jpg" />
+        </li>
+        <li>
+            <span style="background:#F60;">第二项</span>
+            <img src="03/1.jpg" />
+        </li>
+        <li>
+            <span style="background:#0F0;">第三项</span>
+            <img src="03/2.jpg" />
+        </li>
+        <li>
+            <span style="background:#F3F;">第四项</span>
+            <img src="03/3.jpg" />
+        </li>
+    </ul>
+
+</div>
+<div class="show">
+    <p>×</p>
+    <div class="photoWall">
+        <ul id="ulphoto">
+            <li><img src="img/0.jpg" ></li>
+            <li><img src="img/1.jpg" ></li>
+            <li><img src="img/2.jpg" ></li>
+            <li><img src="img/3.jpg" ></li>
+            <li><img src="img/4.jpg" ></li>
+            <li><img src="img/5.jpg" ></li>
+            <li><img src="img/6.jpg" ></li>
+            <li><img src="img/7.jpg" ></li>
+            <li><img src="img/8.jpg" ></li>
+        </ul>
+    </div>
+
+</div>
+<div class="show">
+    <p>×</p>
+    <div id="lagou">
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+        <div>
+            <span></span>
+        </div>
+    </div>
+</div>
+<div class="show cal">
+    <p>×</p>
+    <div class="calendar" id="calendar">
+        <a href="javascript:;" class="prev">←</a>
+        <a href="javascript:;" class="next">→</a>
+        <span>xxxx年xx月</span>
+        <ol>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li class="week">六</li>
+            <li class="week">日</li>
+        </ol>
+        <ul>
+        </ul>
+    </div>
+<div class="show">
+    <p>×</p>
+    <div id="tabauto">
+        <a href="javascript:;" id="backward"></a>
+        <a href="javascript:;" id="forward" ></a>
+        <ul id="ulauto">
+            <li class="on"><a href="#"><img src="img1/1.jpg" /></a></li>
+            <li><a href="#"><img src="img1/2.jpg" /></a></li>
+            <li><a href="#"><img src="img1/3.jpg" /></a></li>
+            <li><a href="#"><img src="img1/4.jpg" /></a></li>
+            <li><a href="#"><img src="img1/5.jpg" /></a></li>
+            <li><a href="#"><img src="img1/6.jpg" /></a></li>
+        </ul>
+        <ol id="olauto">
+            <li class="on"><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;">3</a></li>
+            <li><a href="javascript:;">4</a></li>
+            <li><a href="javascript:;">5</a></li>
+            <li><a href="javascript:;">6</a></li>
+        </ol>
+    </div>
+</div>
+</div>
+<div class="show">
+    <p>×</p>
+    <div id="fllow">
+        <span>热爱大自然</span>
+    </div>
+
+</div>
+<div class="show">
+    <p>×</p>
+    <input type="button" value="go" id="btn" />
+    <ul class="list" id="photoList">
+        <li><img src="img/0.jpg" alt=""></li>
+        <li><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+
+        <li><img src="img/3.jpg" alt=""></li>
+        <li><img src="img/4.jpg" alt=""></li>
+        <li><img src="img/5.jpg" alt=""></li>
+
+        <li><img src="img/6.jpg" alt=""></li>
+        <li><img src="img/7.jpg" alt=""></li>
+        <li><img src="img/8.jpg" alt=""></li>
+    </ul>
+
+</div>
+
+</div>
+</body>
+</html>
