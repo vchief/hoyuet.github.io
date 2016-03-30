@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 500px;
+            height: 100px;
+            position: relative;
+
+            margin: 100px auto;
+        }
+        .div1{
+            width:0%;
+            height: 30px;
+            background: red;
+        }
+        .span1{
+            display: inline-block;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.querySelector('.div1');
+            var oSpan=document.querySelector('.span1');
+
+            var total=77; // 总数
+            var n=0; // 当前加在张数
+
+            for (var i=0; i<total; i++)
+            {
+                var oImg=new Image();
+                oImg.src='http://www.zhinengshe.com/works/3525/img/'+i+'.jpg';
+
+                oImg.onload=function (){
+                    n++;
+                    // 0 - 1
+                    var scale=n/total*100;
+                    oSpan.innerHTML=Math.floor(scale)+'%';
+                    oDiv.style.width=scale+'%';
+                };
+            }
+
+        };
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="div1"></div>
+    <span class="span1">0%</span>
+</div>
+</body>
+</html>
