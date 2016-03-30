@@ -1,0 +1,99 @@
+*{margin:0;padding:0;}
+a{text-decoration:none;}
+a:hover{border-bottom:1px solid #ccc;}
+ul{list-style:none;}
+img{border:none;}
+body{background:#333;font-size:12px;text-align:center;background:url(../image/bg.gif);font-family:Arial,Helvetica,sans-serif;}
+.main{width:950px;margin:0 auto;text-align:left;}
+.header{width:950px;height:60px;margin:0 auto;background:#333;}
+.footer{width:950px;margin:5px auto;background:#333;}
+.footer p{color:#fff;}
+
+.leftCol{width:500px;float:left;}
+.midCol{width:200px;margin-left:5px;float:left;}
+.rightCol{width:240px;float:right;}
+.leftCol,.midCol,.rightCol{display:inline;background:#fff;}
+.clear{clear:both;}
+
+.logo{width:520px;height:60px;float:left;background:url(../image/logo.gif) no-repeat;}
+.nav{width:430px;height:60px;float:right;}
+.nav ul li{float:left;padding:0 10px;margin:40px 0 0 0;}
+.nav ul li a{display:block;color:#fff;}
+.nav ul li a span{color:#ccc;font-size:11px;font-weight:bold;}
+.nav ul li a:hover{border-bottom:2px solid #a2d440;}
+.main h4{font-size:14px;color:#333;line-height:32px;background:#f1f6e5;}
+
+.articleBox h5{font-size:12px;line-height:22px;color:#496e00;background:url(../image/article_marker.gif) no-repeat left;border-bottom:1px dotted #ccc;padding-left:20px;margin-top:10px;}
+.articleBox h5 a{font-weight:normal;color:#666;margin-left:20px;}
+
+.articleDescript{width:500px;height:22px;}
+.articleDescript li{float:left;padding:3px 10px 3px 22px;}
+.articleDescript li.sort{background:url(../image/sort.gif) no-repeat left;}
+.articleDescript li.time{background:url(../image/time.gif) no-repeat left;}
+.articleDescript li.author{background:url(../image/author.gif) no-repeat left;}
+.articleDescript li.comments{background:url(../image/comments.gif) no-repeat left;}
+.articleDescript li a{color:#749f0c;}
+.articleDescript li span{color:#999}
+
+.articleContent{width:470px;margin:10px auto;}
+.articleContent p{font-size:12px;color:#666;line-height:22px;text-indent:24px;}
+.articleContent a{font-size:13px;color:#093;font-weight:bold;}
+
+.articleTag{width:500px;}
+.articleTag p{background:url(../image/tag.gif) no-repeat left;padding-left:22px;}
+.articleTag p a{color:#749f0c;padding:0 3px;}
+
+.articleList,.articleComment,.tags{ width:180px; margin:10px auto; }
+
+.articleList li{line-height:22px;}
+.articleList li a{color:#749f0c;background:url(../image/list_marker.gif) no-repeat left;padding-left:15px;}
+
+.articleComment li{line-height:22px;background:url(../image/new_comment.gif) no-repeat left;}
+.articleComment li a{color:#666;padding-left:20px;}
+.articleComment li a:hover{color:maroon;}
+
+.tags a{color:#40a1de;line-height:22px;margin:0 10px 0 0;white_space:nowrap;}
+
+.archives{ width:220px; margin:10px auto;}
+.archives li{ font-size:13px; line-height:20px;background:url(../image/list_marker.gif) no-repeat left; padding-left:15px; }
+.archives li a{color:#496e00;} 
+
+/*article.html*/
+.articleRelative ul li{font-size:13px;line-height:20px;background:url(../image/list_marker.gif) no-repeat left;padding-left:15px;}
+.articleRelative ul li a{color:#666;}
+.oneComment{width:400px;margin:5px auto;}
+.oneComment p.top{width:400px;height:8px;background:url(../image/top.gif) no-repeat;font-size:0;}
+.oneComment p.btm{width:400px;height:8px;background:url(../image/btm.gif) no-repeat;font-size:0;}
+.oneComment p.commentName,.oneComment p.commentContent{width:398px;border-left:1px solid #82ae16;border-right:1px solid #82ae16;}
+.oneComment p.commentName{color:#060;font-weight:bold;text-indent:12px;}
+.oneComment p.commentName span{color:#666;font-weight:normal;}
+.oneComment p.commentContent{color:#666;text-indent:24px;line-height:22px;}
+.writeComment{width:400px;margin:10px auto;}
+.writeComment p{margin:3px auto 0;}
+.writeComment label{float:left;width:30px;color:#060;line-height:20px;}
+.writeComment input.text{width:120px;border:1px solid #ccc;height:20px;}
+.writeComment textarea{border:1px solid #ccc;}
+.writeComment input.button{width:40px;height:25px;border:1px solid #060;background:#fdfff8;}
+
+/*archives.html*/
+.archivesList{margin:10px 0 0 20px;}
+.archivesList li{font-size:14px;color:#060;font-weight:bold;line-height:22px;}
+.archivesList li ul{margin:10px 0;}
+.archivesList li ul li{padding-left:15px;line-height:20px;background:url(../image/list_marker.gif) no-repeat left;}
+.archivesList li ul li a{color:#666;font-size:12px;font-weight:normal;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
