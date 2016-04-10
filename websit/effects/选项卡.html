@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery练习</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            border: none;
+        }
+        div{
+            width: 192px;
+            height: 138px;
+            position: relative;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        ul{
+            width: 960px;
+            height: 108px;
+            position: absolute;
+            top:0;
+            left: 0;
+        }
+        ul li{
+            width: 190px;
+            height: 106px;
+            border: 1px solid grey;
+            float: left;
+
+        }
+        ol{
+            width: 100px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            position: absolute;
+            left: 25%;
+            bottom: 5px;
+
+        }
+        ol li{
+            width: 15px;
+            height: 15px;
+            background: #ccc;
+            text-align: center;
+            line-height: 15px;
+            margin-left: 5px;
+            margin-top: 2px;
+            float: left;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .on{
+            background: orangered;
+        }
+    </style>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            var now=0;
+            var timer=null;
+            $('div').mouseover(function(){
+                clearInterval(timer);
+                //点击播放
+                $('ol li').click(function(){
+                    now=$(this).index();
+                    $('ol li').removeClass('on');
+                    $(this).addClass('on');
+                    //alert($(this).index());
+                    $('ul').css('left',-$('ul li').outerWidth()*$(this).index());
+                });
+            });
+            $('div').mouseout(function(){
+                //自动播放
+                timer=setInterval(function(){
+                    if(now==$('ol li').length-1){
+                        now=-1;
+                    }
+                    now++;
+                    $('ol li').removeClass('on');
+                    $('ol li').eq(now).addClass('on');
+                    //alert($(this).index());
+                    $('ul').css('left',-$('ul li').outerWidth()*now);
+                    //alert($('ol li').length)
+
+                },1000);
+            });
+            timer=setInterval(function(){
+                now++;
+                $('ol li').removeClass('on');
+                $('ol li').eq(now).addClass('on');
+                //alert($(this).index());
+                $('ul').css('left',-$('ul li').outerWidth()*now);
+                //alert($('ol li').length)
+                if(now==$('ol li').length-1){
+                    now=-1;
+                }
+            },1000);
+        });
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li><img src="img/0.jpg" alt=""></li>
+        <li><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+        <li><img src="img/3.jpg" alt=""></li>
+        <li><img src="img/4.jpg" alt=""></li>
+    </ul>
+    <ol>
+        <li class="on">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+</div>
+</body>
+</html>
