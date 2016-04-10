@@ -1,0 +1,3996 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+    html, body {
+        height: 100%;
+        background: -webkit-linear-gradient(295deg, #0a2234 0%, #0a2234 33%, #0c5f86 48%, #0c5f86 65%, #70becb 100%);
+        background: linear-gradient(155deg, #0a2234 0%, #0a2234 33%, #0c5f86 48%, #0c5f86 65%, #70becb 100%);
+        background-size: 100% 250%;
+        overflow: hidden;
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+
+    body.day {
+        background-position-y: 100%;
+        background-size: 100% 400%;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .checkbox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+    .checkbox input {
+        display: none;
+    }
+    .checkbox input + label {
+        display: block;
+        position: relative;
+        width: 195px;
+        height: 100px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 60px;
+        cursor: pointer;
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+    .checkbox input + label:before {
+        content: "";
+        display: inherit;
+        position: absolute;
+        left: 10px;
+        width: 77.5px;
+        height: 80px;
+        background: #fff;
+        border-radius: inherit;
+        box-shadow: 0 0 65px rgba(255, 255, 255, 0.5);
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+    }
+    .checkbox input:checked + label {
+        background: rgba(0, 0, 0, 0.15);
+    }
+    .checkbox input:checked + label:before {
+        left: 107.5px;
+        background: #fdc472;
+        box-shadow: 0 0 65px rgba(253, 196, 114, 0.5);
+    }
+
+    body.night .night, body.day .day {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    div.day {
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+        visibility: hidden;
+        opacity: 0;
+    }
+    div.day .cloud {
+        width: 180px;
+        height: 100px;
+        position: absolute;
+        background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 257 140"><path fill="#FFFFFF" d="M11.7,128.6h240.3c0.1-1.4,0.1-2.8-0.1-4.2c-0.7-7.6-4.5-14.8-10.3-19.7 c-6.5-5.5-13.7-6.9-21.9-6.9c-1.4,0-2.8,0.1-4.2,0.4c1.7-4.7,2.3-9.7,1.9-14.7c-0.8-8.8-5.2-17.1-11.9-22.8 c-2.5-1.6-5-3.2-7.4-4.8c-1.3-0.6-2.6-1.1-4-1.6c0.5-3.5,0.6-7.1,0.3-10.7c-1.1-11.8-6.9-23-16-30.7c-3.3-2.2-6.7-4.3-10-6.5 c-7.6-3.6-15.6-5-24-4.2c-3.9,0.9-7.7,1.8-11.6,2.7c-7.5,2.8-13.9,7.3-19.1,13.4c-4.4,5.1-7.5,11.2-9.2,17.6 c-0.1-0.1-0.3-0.2-0.4-0.4c-2.5-1.6-5-3.2-7.5-4.8c-5.7-2.7-11.7-3.7-18-3.2c-2.9,0.7-5.8,1.3-8.7,2c-5.6,2.1-10.4,5.4-14.3,10 c-5.9,7-8.9,16.3-8,25.4c0.2,2.3,0.7,4.5,1.3,6.7c-2-0.7-4-1.3-6.1-1.7c-3-0.1-6-0.3-9.1-0.4C28,70,22.6,72,17.7,75.4 c-0.1,0.1-0.2,0.1-0.3,0.2c-2.1,2-4.3,3.9-6.4,5.8c-2.3,2.7-4.1,5.7-5.4,8.8c-0.1,0.2-0.2,0.4-0.4,0.6c-0.9,2.8-1.8,5.7-2.7,8.5 c-1,5.9-0.5,11.7,1.6,17.3C5.7,121.1,8.4,125.2,11.7,128.6z"/></svg>');
+        background-size: 100% 100%;
+    }
+    div.day .cloud[data-cloud='1'] {
+        top: 84%;
+        width: 162px;
+        height: 93px;
+        opacity: 0;
+        -webkit-animation: cloud-1 74s linear 1.3s infinite;
+        animation: cloud-1 74s linear 1.3s infinite;
+    }
+    @-webkit-keyframes cloud-1 {
+  0% {
+    opacity: 0;
+    left: 48%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-1 {
+  0% {
+    opacity: 0;
+    left: 48%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='2'] {
+        top: 30%;
+        width: 125px;
+        height: 77px;
+        opacity: 0;
+        -webkit-animation: cloud-2 130s linear 0.1s infinite;
+        animation: cloud-2 130s linear 0.1s infinite;
+    }
+    @-webkit-keyframes cloud-2 {
+  0% {
+    opacity: 0;
+    left: 10%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-2 {
+  0% {
+    opacity: 0;
+    left: 10%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='3'] {
+        top: 63%;
+        width: 87px;
+        height: 77px;
+        opacity: 0;
+        -webkit-animation: cloud-3 99s linear 5s infinite;
+        animation: cloud-3 99s linear 5s infinite;
+    }
+    @-webkit-keyframes cloud-3 {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-3 {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='4'] {
+        top: 3%;
+        width: 144px;
+        height: 71px;
+        opacity: 0;
+        -webkit-animation: cloud-4 77s linear 0.2s infinite;
+        animation: cloud-4 77s linear 0.2s infinite;
+    }
+    @-webkit-keyframes cloud-4 {
+  0% {
+    opacity: 0;
+    left: 67%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-4 {
+  0% {
+    opacity: 0;
+    left: 67%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='5'] {
+        top: 8%;
+        width: 76px;
+        height: 60px;
+        opacity: 0;
+        -webkit-animation: cloud-5 160s linear 7.8s infinite;
+        animation: cloud-5 160s linear 7.8s infinite;
+    }
+    @-webkit-keyframes cloud-5 {
+  0% {
+    opacity: 0;
+    left: 75%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-5 {
+  0% {
+    opacity: 0;
+    left: 75%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='6'] {
+        top: 5%;
+        width: 153px;
+        height: 62px;
+        opacity: 0;
+        -webkit-animation: cloud-6 31s linear 6.5s infinite;
+        animation: cloud-6 31s linear 6.5s infinite;
+    }
+    @-webkit-keyframes cloud-6 {
+  0% {
+    opacity: 0;
+    left: 24%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-6 {
+  0% {
+    opacity: 0;
+    left: 24%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='7'] {
+        top: 80%;
+        width: 151px;
+        height: 60px;
+        opacity: 0;
+        -webkit-animation: cloud-7 107s linear 7s infinite;
+        animation: cloud-7 107s linear 7s infinite;
+    }
+    @-webkit-keyframes cloud-7 {
+  0% {
+    opacity: 0;
+    left: 97%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-7 {
+  0% {
+    opacity: 0;
+    left: 97%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='8'] {
+        top: 56%;
+        width: 144px;
+        height: 68px;
+        opacity: 0;
+        -webkit-animation: cloud-8 19s linear 5.3s infinite;
+        animation: cloud-8 19s linear 5.3s infinite;
+    }
+    @-webkit-keyframes cloud-8 {
+  0% {
+    opacity: 0;
+    left: 62%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-8 {
+  0% {
+    opacity: 0;
+    left: 62%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='9'] {
+        top: 67%;
+        width: 119px;
+        height: 85px;
+        opacity: 0;
+        -webkit-animation: cloud-9 156s linear 4s infinite;
+        animation: cloud-9 156s linear 4s infinite;
+    }
+    @-webkit-keyframes cloud-9 {
+  0% {
+    opacity: 0;
+    left: 56%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-9 {
+  0% {
+    opacity: 0;
+    left: 56%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='10'] {
+        top: 42%;
+        width: 157px;
+        height: 72px;
+        opacity: 0;
+        -webkit-animation: cloud-10 115s linear 3.2s infinite;
+        animation: cloud-10 115s linear 3.2s infinite;
+    }
+    @-webkit-keyframes cloud-10 {
+  0% {
+    opacity: 0;
+    left: 15%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-10 {
+  0% {
+    opacity: 0;
+    left: 15%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='11'] {
+        top: 21%;
+        width: 138px;
+        height: 59px;
+        opacity: 0;
+        -webkit-animation: cloud-11 82s linear 0.6s infinite;
+        animation: cloud-11 82s linear 0.6s infinite;
+    }
+    @-webkit-keyframes cloud-11 {
+  0% {
+    opacity: 0;
+    left: 28%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-11 {
+  0% {
+    opacity: 0;
+    left: 28%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='12'] {
+        top: 53%;
+        width: 78px;
+        height: 63px;
+        opacity: 0;
+        -webkit-animation: cloud-12 105s linear 4.8s infinite;
+        animation: cloud-12 105s linear 4.8s infinite;
+    }
+    @-webkit-keyframes cloud-12 {
+  0% {
+    opacity: 0;
+    left: 63%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-12 {
+  0% {
+    opacity: 0;
+    left: 63%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='13'] {
+        top: 25%;
+        width: 71px;
+        height: 100px;
+        opacity: 0;
+        -webkit-animation: cloud-13 70s linear 4.9s infinite;
+        animation: cloud-13 70s linear 4.9s infinite;
+    }
+    @-webkit-keyframes cloud-13 {
+  0% {
+    opacity: 0;
+    left: 22%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-13 {
+  0% {
+    opacity: 0;
+    left: 22%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='14'] {
+        top: 17%;
+        width: 151px;
+        height: 51px;
+        opacity: 0;
+        -webkit-animation: cloud-14 60s linear 3.5s infinite;
+        animation: cloud-14 60s linear 3.5s infinite;
+    }
+    @-webkit-keyframes cloud-14 {
+  0% {
+    opacity: 0;
+    left: 64%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-14 {
+  0% {
+    opacity: 0;
+    left: 64%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='15'] {
+        top: 30%;
+        width: 180px;
+        height: 75px;
+        opacity: 0;
+        -webkit-animation: cloud-15 141s linear 2.9s infinite;
+        animation: cloud-15 141s linear 2.9s infinite;
+    }
+    @-webkit-keyframes cloud-15 {
+  0% {
+    opacity: 0;
+    left: 20%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-15 {
+  0% {
+    opacity: 0;
+    left: 20%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='16'] {
+        top: 84%;
+        width: 167px;
+        height: 82px;
+        opacity: 0;
+        -webkit-animation: cloud-16 74s linear 3.3s infinite;
+        animation: cloud-16 74s linear 3.3s infinite;
+    }
+    @-webkit-keyframes cloud-16 {
+  0% {
+    opacity: 0;
+    left: 84%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-16 {
+  0% {
+    opacity: 0;
+    left: 84%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='17'] {
+        top: 61%;
+        width: 123px;
+        height: 85px;
+        opacity: 0;
+        -webkit-animation: cloud-17 158s linear 3.3s infinite;
+        animation: cloud-17 158s linear 3.3s infinite;
+    }
+    @-webkit-keyframes cloud-17 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-17 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='18'] {
+        top: 100%;
+        width: 79px;
+        height: 68px;
+        opacity: 0;
+        -webkit-animation: cloud-18 108s linear 6.1s infinite;
+        animation: cloud-18 108s linear 6.1s infinite;
+    }
+    @-webkit-keyframes cloud-18 {
+  0% {
+    opacity: 0;
+    left: 57%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-18 {
+  0% {
+    opacity: 0;
+    left: 57%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='19'] {
+        top: 1%;
+        width: 106px;
+        height: 76px;
+        opacity: 0;
+        -webkit-animation: cloud-19 132s linear 7.2s infinite;
+        animation: cloud-19 132s linear 7.2s infinite;
+    }
+    @-webkit-keyframes cloud-19 {
+  0% {
+    opacity: 0;
+    left: 54%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-19 {
+  0% {
+    opacity: 0;
+    left: 54%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='20'] {
+        top: 32%;
+        width: 160px;
+        height: 60px;
+        opacity: 0;
+        -webkit-animation: cloud-20 123s linear 2.1s infinite;
+        animation: cloud-20 123s linear 2.1s infinite;
+    }
+    @-webkit-keyframes cloud-20 {
+  0% {
+    opacity: 0;
+    left: 60%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-20 {
+  0% {
+    opacity: 0;
+    left: 60%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='21'] {
+        top: 38%;
+        width: 177px;
+        height: 81px;
+        opacity: 0;
+        -webkit-animation: cloud-21 155s linear 4s infinite;
+        animation: cloud-21 155s linear 4s infinite;
+    }
+    @-webkit-keyframes cloud-21 {
+  0% {
+    opacity: 0;
+    left: 29%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-21 {
+  0% {
+    opacity: 0;
+    left: 29%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='22'] {
+        top: 35%;
+        width: 156px;
+        height: 94px;
+        opacity: 0;
+        -webkit-animation: cloud-22 129s linear 7.4s infinite;
+        animation: cloud-22 129s linear 7.4s infinite;
+    }
+    @-webkit-keyframes cloud-22 {
+  0% {
+    opacity: 0;
+    left: 14%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-22 {
+  0% {
+    opacity: 0;
+    left: 14%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='23'] {
+        top: 20%;
+        width: 94px;
+        height: 93px;
+        opacity: 0;
+        -webkit-animation: cloud-23 150s linear 3s infinite;
+        animation: cloud-23 150s linear 3s infinite;
+    }
+    @-webkit-keyframes cloud-23 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-23 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='24'] {
+        top: 19%;
+        width: 165px;
+        height: 67px;
+        opacity: 0;
+        -webkit-animation: cloud-24 47s linear 5.2s infinite;
+        animation: cloud-24 47s linear 5.2s infinite;
+    }
+    @-webkit-keyframes cloud-24 {
+  0% {
+    opacity: 0;
+    left: 96%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-24 {
+  0% {
+    opacity: 0;
+    left: 96%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='25'] {
+        top: 27%;
+        width: 107px;
+        height: 91px;
+        opacity: 0;
+        -webkit-animation: cloud-25 138s linear 2.3s infinite;
+        animation: cloud-25 138s linear 2.3s infinite;
+    }
+    @-webkit-keyframes cloud-25 {
+  0% {
+    opacity: 0;
+    left: 78%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-25 {
+  0% {
+    opacity: 0;
+    left: 78%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='26'] {
+        top: 16%;
+        width: 133px;
+        height: 65px;
+        opacity: 0;
+        -webkit-animation: cloud-26 28s linear 6.9s infinite;
+        animation: cloud-26 28s linear 6.9s infinite;
+    }
+    @-webkit-keyframes cloud-26 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-26 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='27'] {
+        top: 42%;
+        width: 93px;
+        height: 100px;
+        opacity: 0;
+        -webkit-animation: cloud-27 17s linear 0.5s infinite;
+        animation: cloud-27 17s linear 0.5s infinite;
+    }
+    @-webkit-keyframes cloud-27 {
+  0% {
+    opacity: 0;
+    left: 4%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-27 {
+  0% {
+    opacity: 0;
+    left: 4%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='28'] {
+        top: 25%;
+        width: 80px;
+        height: 54px;
+        opacity: 0;
+        -webkit-animation: cloud-28 159s linear 7.2s infinite;
+        animation: cloud-28 159s linear 7.2s infinite;
+    }
+    @-webkit-keyframes cloud-28 {
+  0% {
+    opacity: 0;
+    left: 98%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-28 {
+  0% {
+    opacity: 0;
+    left: 98%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='29'] {
+        top: 59%;
+        width: 141px;
+        height: 98px;
+        opacity: 0;
+        -webkit-animation: cloud-29 52s linear 9.1s infinite;
+        animation: cloud-29 52s linear 9.1s infinite;
+    }
+    @-webkit-keyframes cloud-29 {
+  0% {
+    opacity: 0;
+    left: 66%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-29 {
+  0% {
+    opacity: 0;
+    left: 66%;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='30'] {
+        top: 17%;
+        width: 157px;
+        height: 77px;
+        opacity: 0;
+        -webkit-animation: cloud-30 145s linear 3.7s infinite;
+        animation: cloud-30 145s linear 3.7s infinite;
+    }
+    @-webkit-keyframes cloud-30 {
+  0% {
+    opacity: 0;
+    left: 14%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-30 {
+  0% {
+    opacity: 0;
+    left: 14%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='31'] {
+        top: 47%;
+        width: 104px;
+        height: 70px;
+        opacity: 0;
+        -webkit-animation: cloud-31 156s linear 1.2s infinite;
+        animation: cloud-31 156s linear 1.2s infinite;
+    }
+    @-webkit-keyframes cloud-31 {
+  0% {
+    opacity: 0;
+    left: 21%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-31 {
+  0% {
+    opacity: 0;
+    left: 21%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='32'] {
+        top: 52%;
+        width: 151px;
+        height: 100px;
+        opacity: 0;
+        -webkit-animation: cloud-32 154s linear 2.8s infinite;
+        animation: cloud-32 154s linear 2.8s infinite;
+    }
+    @-webkit-keyframes cloud-32 {
+  0% {
+    opacity: 0;
+    left: 17%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-32 {
+  0% {
+    opacity: 0;
+    left: 17%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='33'] {
+        top: 25%;
+        width: 106px;
+        height: 76px;
+        opacity: 0;
+        -webkit-animation: cloud-33 75s linear 3.4s infinite;
+        animation: cloud-33 75s linear 3.4s infinite;
+    }
+    @-webkit-keyframes cloud-33 {
+  0% {
+    opacity: 0;
+    left: 85%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-33 {
+  0% {
+    opacity: 0;
+    left: 85%;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='34'] {
+        top: 26%;
+        width: 110px;
+        height: 72px;
+        opacity: 0;
+        -webkit-animation: cloud-34 127s linear 8s infinite;
+        animation: cloud-34 127s linear 8s infinite;
+    }
+    @-webkit-keyframes cloud-34 {
+  0% {
+    opacity: 0;
+    left: 71%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-34 {
+  0% {
+    opacity: 0;
+    left: 71%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='35'] {
+        top: 61%;
+        width: 114px;
+        height: 90px;
+        opacity: 0;
+        -webkit-animation: cloud-35 87s linear 6.5s infinite;
+        animation: cloud-35 87s linear 6.5s infinite;
+    }
+    @-webkit-keyframes cloud-35 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-35 {
+  0% {
+    opacity: 0;
+    left: 86%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='36'] {
+        top: 79%;
+        width: 109px;
+        height: 95px;
+        opacity: 0;
+        -webkit-animation: cloud-36 96s linear 4.4s infinite;
+        animation: cloud-36 96s linear 4.4s infinite;
+    }
+    @-webkit-keyframes cloud-36 {
+  0% {
+    opacity: 0;
+    left: 4%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-36 {
+  0% {
+    opacity: 0;
+    left: 4%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='37'] {
+        top: 84%;
+        width: 101px;
+        height: 80px;
+        opacity: 0;
+        -webkit-animation: cloud-37 109s linear 9.2s infinite;
+        animation: cloud-37 109s linear 9.2s infinite;
+    }
+    @-webkit-keyframes cloud-37 {
+  0% {
+    opacity: 0;
+    left: 21%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-37 {
+  0% {
+    opacity: 0;
+    left: 21%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='38'] {
+        top: 11%;
+        width: 146px;
+        height: 82px;
+        opacity: 0;
+        -webkit-animation: cloud-38 35s linear 4.8s infinite;
+        animation: cloud-38 35s linear 4.8s infinite;
+    }
+    @-webkit-keyframes cloud-38 {
+  0% {
+    opacity: 0;
+    left: 40%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-38 {
+  0% {
+    opacity: 0;
+    left: 40%;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='39'] {
+        top: 74%;
+        width: 154px;
+        height: 78px;
+        opacity: 0;
+        -webkit-animation: cloud-39 118s linear 8.5s infinite;
+        animation: cloud-39 118s linear 8.5s infinite;
+    }
+    @-webkit-keyframes cloud-39 {
+  0% {
+    opacity: 0;
+    left: 45%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-39 {
+  0% {
+    opacity: 0;
+    left: 45%;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='40'] {
+        top: 96%;
+        width: 134px;
+        height: 52px;
+        opacity: 0;
+        -webkit-animation: cloud-40 134s linear 3.9s infinite;
+        animation: cloud-40 134s linear 3.9s infinite;
+    }
+    @-webkit-keyframes cloud-40 {
+  0% {
+    opacity: 0;
+    left: 81%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-40 {
+  0% {
+    opacity: 0;
+    left: 81%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='41'] {
+        top: 87%;
+        width: 93px;
+        height: 96px;
+        opacity: 0;
+        -webkit-animation: cloud-41 104s linear 7.9s infinite;
+        animation: cloud-41 104s linear 7.9s infinite;
+    }
+    @-webkit-keyframes cloud-41 {
+  0% {
+    opacity: 0;
+    left: 90%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-41 {
+  0% {
+    opacity: 0;
+    left: 90%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='42'] {
+        top: 30%;
+        width: 116px;
+        height: 61px;
+        opacity: 0;
+        -webkit-animation: cloud-42 132s linear 7.3s infinite;
+        animation: cloud-42 132s linear 7.3s infinite;
+    }
+    @-webkit-keyframes cloud-42 {
+  0% {
+    opacity: 0;
+    left: 93%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-42 {
+  0% {
+    opacity: 0;
+    left: 93%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='43'] {
+        top: 9%;
+        width: 89px;
+        height: 99px;
+        opacity: 0;
+        -webkit-animation: cloud-43 110s linear 2.6s infinite;
+        animation: cloud-43 110s linear 2.6s infinite;
+    }
+    @-webkit-keyframes cloud-43 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-43 {
+  0% {
+    opacity: 0;
+    left: 46%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='44'] {
+        top: 52%;
+        width: 167px;
+        height: 70px;
+        opacity: 0;
+        -webkit-animation: cloud-44 43s linear 6.5s infinite;
+        animation: cloud-44 43s linear 6.5s infinite;
+    }
+    @-webkit-keyframes cloud-44 {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-44 {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='45'] {
+        top: 38%;
+        width: 145px;
+        height: 57px;
+        opacity: 0;
+        -webkit-animation: cloud-45 107s linear 7.1s infinite;
+        animation: cloud-45 107s linear 7.1s infinite;
+    }
+    @-webkit-keyframes cloud-45 {
+  0% {
+    opacity: 0;
+    left: 97%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-45 {
+  0% {
+    opacity: 0;
+    left: 97%;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='46'] {
+        top: 58%;
+        width: 92px;
+        height: 61px;
+        opacity: 0;
+        -webkit-animation: cloud-46 80s linear 0.9s infinite;
+        animation: cloud-46 80s linear 0.9s infinite;
+    }
+    @-webkit-keyframes cloud-46 {
+  0% {
+    opacity: 0;
+    left: 40%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-46 {
+  0% {
+    opacity: 0;
+    left: 40%;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='47'] {
+        top: 19%;
+        width: 124px;
+        height: 84px;
+        opacity: 0;
+        -webkit-animation: cloud-47 23s linear 5s infinite;
+        animation: cloud-47 23s linear 5s infinite;
+    }
+    @-webkit-keyframes cloud-47 {
+  0% {
+    opacity: 0;
+    left: 31%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-47 {
+  0% {
+    opacity: 0;
+    left: 31%;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='48'] {
+        top: 58%;
+        width: 112px;
+        height: 63px;
+        opacity: 0;
+        -webkit-animation: cloud-48 20s linear 7.1s infinite;
+        animation: cloud-48 20s linear 7.1s infinite;
+    }
+    @-webkit-keyframes cloud-48 {
+  0% {
+    opacity: 0;
+    left: 60%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-48 {
+  0% {
+    opacity: 0;
+    left: 60%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='49'] {
+        top: 16%;
+        width: 90px;
+        height: 81px;
+        opacity: 0;
+        -webkit-animation: cloud-49 30s linear 4.6s infinite;
+        animation: cloud-49 30s linear 4.6s infinite;
+    }
+    @-webkit-keyframes cloud-49 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-49 {
+  0% {
+    opacity: 0;
+    left: 79%;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.day .cloud[data-cloud='50'] {
+        top: 23%;
+        width: 176px;
+        height: 97px;
+        opacity: 0;
+        -webkit-animation: cloud-50 44s linear 6.2s infinite;
+        animation: cloud-50 44s linear 6.2s infinite;
+    }
+    @-webkit-keyframes cloud-50 {
+  0% {
+    opacity: 0;
+    left: 64%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    @keyframes cloud-50 {
+  0% {
+    opacity: 0;
+    left: 64%;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    left: -180px;
+  }
+}
+    div.night {
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease;
+        visibility: hidden;
+        opacity: 0;
+    }
+    div.night .star {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        background: #fff;
+        border-radius: 100%;
+        -webkit-animation: glow infinite linear alternate 2s;
+        animation: glow infinite linear alternate 2s;
+    }
+    @-webkit-keyframes glow {
+  from {
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.45);
+  }
+  to {
+    box-shadow: 0 0 10px 1px transparent;
+  }
+}
+    @keyframes glow {
+  from {
+    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.45);
+  }
+  to {
+    box-shadow: 0 0 10px 1px transparent;
+  }
+}
+    div.night .star[data-star='1'] {
+        top: 81%;
+        left: 56%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='2'] {
+        top: 39%;
+        left: 13%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='3'] {
+        top: 26%;
+        left: 78%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='4'] {
+        top: 47%;
+        left: 75%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='5'] {
+        top: 8%;
+        left: 14%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='6'] {
+        top: 12%;
+        left: 43%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='7'] {
+        top: 8%;
+        left: 89%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='8'] {
+        top: 35%;
+        left: 98%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='9'] {
+        top: 48%;
+        left: 43%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='10'] {
+        top: 79%;
+        left: 82%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='11'] {
+        top: 19%;
+        left: 88%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='12'] {
+        top: 82%;
+        left: 50%;
+        opacity: 0.7;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='13'] {
+        top: 4%;
+        left: 52%;
+        opacity: 1;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='14'] {
+        top: 60%;
+        left: 17%;
+        opacity: 1;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='15'] {
+        top: 100%;
+        left: 87%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='16'] {
+        top: 31%;
+        left: 55%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='17'] {
+        top: 75%;
+        left: 73%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='18'] {
+        top: 62%;
+        left: 35%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='19'] {
+        top: 31%;
+        left: 84%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='20'] {
+        top: 11%;
+        left: 52%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='21'] {
+        top: 90%;
+        left: 79%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='22'] {
+        top: 11%;
+        left: 89%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='23'] {
+        top: 63%;
+        left: 87%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='24'] {
+        top: 5%;
+        left: 13%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='25'] {
+        top: 60%;
+        left: 9%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='26'] {
+        top: 91%;
+        left: 34%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='27'] {
+        top: 21%;
+        left: 72%;
+        opacity: 1;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='28'] {
+        top: 82%;
+        left: 97%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='29'] {
+        top: 47%;
+        left: 44%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='30'] {
+        top: 64%;
+        left: 81%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='31'] {
+        top: 94%;
+        left: 65%;
+        opacity: 0.6;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='32'] {
+        top: 45%;
+        left: 99%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='33'] {
+        top: 67%;
+        left: 36%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='34'] {
+        top: 31%;
+        left: 1%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='35'] {
+        top: 7%;
+        left: 47%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='36'] {
+        top: 7%;
+        left: 6%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='37'] {
+        top: 36%;
+        left: 98%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='38'] {
+        top: 8%;
+        left: 57%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='39'] {
+        top: 39%;
+        left: 87%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='40'] {
+        top: 26%;
+        left: 71%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='41'] {
+        top: 17%;
+        left: 7%;
+        opacity: 0.2;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='42'] {
+        top: 84%;
+        left: 11%;
+        opacity: 0.5;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='43'] {
+        top: 38%;
+        left: 77%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='44'] {
+        top: 73%;
+        left: 97%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='45'] {
+        top: 11%;
+        left: 1%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='46'] {
+        top: 100%;
+        left: 97%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='47'] {
+        top: 45%;
+        left: 41%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='48'] {
+        top: 59%;
+        left: 59%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='49'] {
+        top: 3%;
+        left: 88%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='50'] {
+        top: 3%;
+        left: 11%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='51'] {
+        top: 20%;
+        left: 85%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='52'] {
+        top: 59%;
+        left: 77%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='53'] {
+        top: 47%;
+        left: 38%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='54'] {
+        top: 33%;
+        left: 89%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='55'] {
+        top: 45%;
+        left: 96%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='56'] {
+        top: 84%;
+        left: 4%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='57'] {
+        top: 66%;
+        left: 36%;
+        opacity: 0.3;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='58'] {
+        top: 86%;
+        left: 52%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='59'] {
+        top: 44%;
+        left: 5%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='60'] {
+        top: 43%;
+        left: 86%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='61'] {
+        top: 63%;
+        left: 44%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='62'] {
+        top: 36%;
+        left: 73%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='63'] {
+        top: 13%;
+        left: 21%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='64'] {
+        top: 69%;
+        left: 2%;
+        opacity: 1;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='65'] {
+        top: 47%;
+        left: 40%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='66'] {
+        top: 36%;
+        left: 58%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='67'] {
+        top: 100%;
+        left: 94%;
+        opacity: 0.3;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='68'] {
+        top: 96%;
+        left: 29%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='69'] {
+        top: 16%;
+        left: 25%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='70'] {
+        top: 88%;
+        left: 42%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='71'] {
+        top: 82%;
+        left: 51%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='72'] {
+        top: 61%;
+        left: 18%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='73'] {
+        top: 8%;
+        left: 59%;
+        opacity: 0.8;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='74'] {
+        top: 28%;
+        left: 4%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='75'] {
+        top: 36%;
+        left: 46%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='76'] {
+        top: 91%;
+        left: 17%;
+        opacity: 0.4;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='77'] {
+        top: 33%;
+        left: 95%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='78'] {
+        top: 34%;
+        left: 41%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='79'] {
+        top: 85%;
+        left: 20%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='80'] {
+        top: 50%;
+        left: 92%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='81'] {
+        top: 85%;
+        left: 11%;
+        opacity: 0.4;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='82'] {
+        top: 29%;
+        left: 100%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='83'] {
+        top: 51%;
+        left: 33%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='84'] {
+        top: 16%;
+        left: 53%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='85'] {
+        top: 26%;
+        left: 69%;
+        opacity: 0.6;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='86'] {
+        top: 10%;
+        left: 66%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='87'] {
+        top: 59%;
+        left: 91%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='88'] {
+        top: 85%;
+        left: 37%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='89'] {
+        top: 63%;
+        left: 22%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='90'] {
+        top: 27%;
+        left: 21%;
+        opacity: 0.8;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='91'] {
+        top: 68%;
+        left: 64%;
+        opacity: 1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='92'] {
+        top: 92%;
+        left: 24%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='93'] {
+        top: 63%;
+        left: 55%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='94'] {
+        top: 42%;
+        left: 28%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='95'] {
+        top: 77%;
+        left: 96%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='96'] {
+        top: 69%;
+        left: 27%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='97'] {
+        top: 98%;
+        left: 98%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='98'] {
+        top: 26%;
+        left: 7%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='99'] {
+        top: 79%;
+        left: 85%;
+        opacity: 0.8;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='100'] {
+        top: 19%;
+        left: 10%;
+        opacity: 1;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='101'] {
+        top: 86%;
+        left: 8%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='102'] {
+        top: 19%;
+        left: 9%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='103'] {
+        top: 54%;
+        left: 34%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='104'] {
+        top: 45%;
+        left: 5%;
+        opacity: 0.4;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='105'] {
+        top: 75%;
+        left: 2%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='106'] {
+        top: 21%;
+        left: 80%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='107'] {
+        top: 9%;
+        left: 15%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='108'] {
+        top: 33%;
+        left: 90%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='109'] {
+        top: 57%;
+        left: 24%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='110'] {
+        top: 12%;
+        left: 44%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='111'] {
+        top: 56%;
+        left: 65%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='112'] {
+        top: 30%;
+        left: 41%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='113'] {
+        top: 24%;
+        left: 91%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='114'] {
+        top: 42%;
+        left: 35%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='115'] {
+        top: 5%;
+        left: 93%;
+        opacity: 1;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='116'] {
+        top: 49%;
+        left: 31%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='117'] {
+        top: 30%;
+        left: 43%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='118'] {
+        top: 4%;
+        left: 22%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='119'] {
+        top: 43%;
+        left: 16%;
+        opacity: 1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='120'] {
+        top: 16%;
+        left: 55%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='121'] {
+        top: 62%;
+        left: 16%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='122'] {
+        top: 19%;
+        left: 11%;
+        opacity: 0.9;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='123'] {
+        top: 33%;
+        left: 19%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='124'] {
+        top: 32%;
+        left: 94%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='125'] {
+        top: 52%;
+        left: 100%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='126'] {
+        top: 11%;
+        left: 44%;
+        opacity: 1;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='127'] {
+        top: 51%;
+        left: 47%;
+        opacity: 0.5;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='128'] {
+        top: 12%;
+        left: 98%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='129'] {
+        top: 21%;
+        left: 8%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='130'] {
+        top: 87%;
+        left: 99%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='131'] {
+        top: 16%;
+        left: 80%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='132'] {
+        top: 3%;
+        left: 10%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='133'] {
+        top: 50%;
+        left: 74%;
+        opacity: 1;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='134'] {
+        top: 37%;
+        left: 61%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='135'] {
+        top: 81%;
+        left: 43%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='136'] {
+        top: 4%;
+        left: 12%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='137'] {
+        top: 92%;
+        left: 76%;
+        opacity: 1;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='138'] {
+        top: 30%;
+        left: 61%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='139'] {
+        top: 87%;
+        left: 29%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='140'] {
+        top: 32%;
+        left: 24%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='141'] {
+        top: 60%;
+        left: 66%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='142'] {
+        top: 71%;
+        left: 52%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='143'] {
+        top: 27%;
+        left: 20%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='144'] {
+        top: 81%;
+        left: 45%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='145'] {
+        top: 23%;
+        left: 93%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='146'] {
+        top: 71%;
+        left: 80%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='147'] {
+        top: 97%;
+        left: 51%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='148'] {
+        top: 10%;
+        left: 59%;
+        opacity: 0.3;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='149'] {
+        top: 75%;
+        left: 78%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='150'] {
+        top: 5%;
+        left: 93%;
+        opacity: 0.9;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='151'] {
+        top: 86%;
+        left: 77%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='152'] {
+        top: 97%;
+        left: 80%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='153'] {
+        top: 54%;
+        left: 67%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='154'] {
+        top: 27%;
+        left: 41%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='155'] {
+        top: 86%;
+        left: 59%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='156'] {
+        top: 43%;
+        left: 50%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='157'] {
+        top: 93%;
+        left: 84%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='158'] {
+        top: 28%;
+        left: 34%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='159'] {
+        top: 37%;
+        left: 90%;
+        opacity: 0.1;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='160'] {
+        top: 62%;
+        left: 91%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='161'] {
+        top: 54%;
+        left: 15%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='162'] {
+        top: 57%;
+        left: 48%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='163'] {
+        top: 33%;
+        left: 49%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='164'] {
+        top: 37%;
+        left: 38%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='165'] {
+        top: 8%;
+        left: 92%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='166'] {
+        top: 19%;
+        left: 15%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='167'] {
+        top: 90%;
+        left: 34%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='168'] {
+        top: 59%;
+        left: 78%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='169'] {
+        top: 87%;
+        left: 14%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='170'] {
+        top: 57%;
+        left: 17%;
+        opacity: 1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='171'] {
+        top: 78%;
+        left: 64%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='172'] {
+        top: 51%;
+        left: 56%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='173'] {
+        top: 80%;
+        left: 65%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='174'] {
+        top: 15%;
+        left: 7%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='175'] {
+        top: 100%;
+        left: 27%;
+        opacity: 1;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='176'] {
+        top: 56%;
+        left: 67%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='177'] {
+        top: 26%;
+        left: 69%;
+        opacity: 0.7;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='178'] {
+        top: 90%;
+        left: 36%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='179'] {
+        top: 60%;
+        left: 41%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='180'] {
+        top: 92%;
+        left: 36%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='181'] {
+        top: 21%;
+        left: 30%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='182'] {
+        top: 2%;
+        left: 5%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='183'] {
+        top: 20%;
+        left: 83%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='184'] {
+        top: 12%;
+        left: 4%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='185'] {
+        top: 58%;
+        left: 5%;
+        opacity: 1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='186'] {
+        top: 88%;
+        left: 80%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='187'] {
+        top: 65%;
+        left: 20%;
+        opacity: 0.4;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='188'] {
+        top: 23%;
+        left: 1%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='189'] {
+        top: 79%;
+        left: 15%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='190'] {
+        top: 12%;
+        left: 32%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='191'] {
+        top: 77%;
+        left: 26%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='192'] {
+        top: 85%;
+        left: 58%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='193'] {
+        top: 30%;
+        left: 69%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='194'] {
+        top: 79%;
+        left: 25%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='195'] {
+        top: 25%;
+        left: 32%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='196'] {
+        top: 14%;
+        left: 72%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='197'] {
+        top: 4%;
+        left: 83%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='198'] {
+        top: 26%;
+        left: 14%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='199'] {
+        top: 41%;
+        left: 91%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='200'] {
+        top: 22%;
+        left: 30%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='201'] {
+        top: 47%;
+        left: 33%;
+        opacity: 1;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='202'] {
+        top: 75%;
+        left: 15%;
+        opacity: 0.6;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='203'] {
+        top: 83%;
+        left: 13%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='204'] {
+        top: 95%;
+        left: 53%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='205'] {
+        top: 65%;
+        left: 91%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='206'] {
+        top: 10%;
+        left: 77%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='207'] {
+        top: 85%;
+        left: 93%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='208'] {
+        top: 45%;
+        left: 94%;
+        opacity: 1;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='209'] {
+        top: 96%;
+        left: 49%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='210'] {
+        top: 91%;
+        left: 24%;
+        opacity: 0.5;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='211'] {
+        top: 18%;
+        left: 51%;
+        opacity: 0.3;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='212'] {
+        top: 2%;
+        left: 38%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='213'] {
+        top: 83%;
+        left: 18%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='214'] {
+        top: 84%;
+        left: 67%;
+        opacity: 1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='215'] {
+        top: 93%;
+        left: 32%;
+        opacity: 0.7;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='216'] {
+        top: 77%;
+        left: 30%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='217'] {
+        top: 61%;
+        left: 30%;
+        opacity: 0.4;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='218'] {
+        top: 53%;
+        left: 78%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='219'] {
+        top: 85%;
+        left: 80%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='220'] {
+        top: 65%;
+        left: 37%;
+        opacity: 1;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='221'] {
+        top: 54%;
+        left: 80%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='222'] {
+        top: 74%;
+        left: 20%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='223'] {
+        top: 52%;
+        left: 38%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='224'] {
+        top: 95%;
+        left: 26%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='225'] {
+        top: 70%;
+        left: 4%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='226'] {
+        top: 97%;
+        left: 46%;
+        opacity: 0.5;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div.night .star[data-star='227'] {
+        top: 91%;
+        left: 37%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='228'] {
+        top: 59%;
+        left: 24%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.7s;
+        animation-delay: 0.7s;
+    }
+    div.night .star[data-star='229'] {
+        top: 35%;
+        left: 1%;
+        opacity: 0.4;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='230'] {
+        top: 92%;
+        left: 72%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+    div.night .star[data-star='231'] {
+        top: 91%;
+        left: 59%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='232'] {
+        top: 91%;
+        left: 41%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='233'] {
+        top: 92%;
+        left: 26%;
+        opacity: 0.8;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='234'] {
+        top: 24%;
+        left: 8%;
+        opacity: 1;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='235'] {
+        top: 43%;
+        left: 12%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.5s;
+        animation-delay: 0.5s;
+    }
+    div.night .star[data-star='236'] {
+        top: 33%;
+        left: 73%;
+        opacity: 0.6;
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+    div.night .star[data-star='237'] {
+        top: 69%;
+        left: 21%;
+        opacity: 0.1;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='238'] {
+        top: 94%;
+        left: 11%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='239'] {
+        top: 59%;
+        left: 91%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='240'] {
+        top: 15%;
+        left: 43%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='241'] {
+        top: 59%;
+        left: 98%;
+        opacity: 0.3;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='242'] {
+        top: 33%;
+        left: 2%;
+        opacity: 0.5;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='243'] {
+        top: 11%;
+        left: 79%;
+        opacity: 0.2;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s;
+    }
+    div.night .star[data-star='244'] {
+        top: 26%;
+        left: 88%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s;
+    }
+    div.night .star[data-star='245'] {
+        top: 37%;
+        left: 26%;
+        opacity: 0.9;
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+    div.night .star[data-star='246'] {
+        top: 9%;
+        left: 93%;
+        opacity: 1;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+    }
+    div.night .star[data-star='247'] {
+        top: 12%;
+        left: 6%;
+        opacity: 1;
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s;
+    }
+    div.night .star[data-star='248'] {
+        top: 87%;
+        left: 93%;
+        opacity: 0.3;
+        -webkit-animation-delay: 1s;
+        animation-delay: 1s;
+    }
+    div
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            (function() {
+                var time = {
+                    init: function() {
+                        this.checkbox = $('#time');
+                        this.bindEvents();
+                        this.changeTime();
+                    },
+                    bindEvents: function() {
+                        $(this.checkbox).change(this.changeTime.bind(this));
+                    },
+                    changeTime: function () {
+                        if (this.checkbox.is(':checked')) {
+                            $('body').removeClass().addClass('day');
+                        } else {
+                            $('body').removeClass().addClass('night');
+                        }
+                    }
+                };
+                time.init();
+            })();
+        });
+
+    </script>
+</head>
+<body>
+<div class="checkbox">
+    <input type="checkbox" id="time"/>
+    <label for="time"></label>
+</div>
+<section class="stages">
+<div class="night">
+<div data-star='1' class="star"></div>
+<div data-star='2' class="star"></div>
+<div data-star='3' class="star"></div>
+<div data-star='4' class="star"></div>
+<div data-star='5' class="star"></div>
+<div data-star='6' class="star"></div>
+<div data-star='7' class="star"></div>
+<div data-star='8' class="star"></div>
+<div data-star='9' class="star"></div>
+<div data-star='10' class="star"></div>
+<div data-star='11' class="star"></div>
+<div data-star='12' class="star"></div>
+<div data-star='13' class="star"></div>
+<div data-star='14' class="star"></div>
+<div data-star='15' class="star"></div>
+<div data-star='16' class="star"></div>
+<div data-star='17' class="star"></div>
+<div data-star='18' class="star"></div>
+<div data-star='19' class="star"></div>
+<div data-star='20' class="star"></div>
+<div data-star='21' class="star"></div>
+<div data-star='22' class="star"></div>
+<div data-star='23' class="star"></div>
+<div data-star='24' class="star"></div>
+<div data-star='25' class="star"></div>
+<div data-star='26' class="star"></div>
+<div data-star='27' class="star"></div>
+<div data-star='28' class="star"></div>
+<div data-star='29' class="star"></div>
+<div data-star='30' class="star"></div>
+<div data-star='31' class="star"></div>
+<div data-star='32' class="star"></div>
+<div data-star='33' class="star"></div>
+<div data-star='34' class="star"></div>
+<div data-star='35' class="star"></div>
+<div data-star='36' class="star"></div>
+<div data-star='37' class="star"></div>
+<div data-star='38' class="star"></div>
+<div data-star='39' class="star"></div>
+<div data-star='40' class="star"></div>
+<div data-star='41' class="star"></div>
+<div data-star='42' class="star"></div>
+<div data-star='43' class="star"></div>
+<div data-star='44' class="star"></div>
+<div data-star='45' class="star"></div>
+<div data-star='46' class="star"></div>
+<div data-star='47' class="star"></div>
+<div data-star='48' class="star"></div>
+<div data-star='49' class="star"></div>
+<div data-star='50' class="star"></div>
+<div data-star='51' class="star"></div>
+<div data-star='52' class="star"></div>
+<div data-star='53' class="star"></div>
+<div data-star='54' class="star"></div>
+<div data-star='55' class="star"></div>
+<div data-star='56' class="star"></div>
+<div data-star='57' class="star"></div>
+<div data-star='58' class="star"></div>
+<div data-star='59' class="star"></div>
+<div data-star='60' class="star"></div>
+<div data-star='61' class="star"></div>
+<div data-star='62' class="star"></div>
+<div data-star='63' class="star"></div>
+<div data-star='64' class="star"></div>
+<div data-star='65' class="star"></div>
+<div data-star='66' class="star"></div>
+<div data-star='67' class="star"></div>
+<div data-star='68' class="star"></div>
+<div data-star='69' class="star"></div>
+<div data-star='70' class="star"></div>
+<div data-star='71' class="star"></div>
+<div data-star='72' class="star"></div>
+<div data-star='73' class="star"></div>
+<div data-star='74' class="star"></div>
+<div data-star='75' class="star"></div>
+<div data-star='76' class="star"></div>
+<div data-star='77' class="star"></div>
+<div data-star='78' class="star"></div>
+<div data-star='79' class="star"></div>
+<div data-star='80' class="star"></div>
+<div data-star='81' class="star"></div>
+<div data-star='82' class="star"></div>
+<div data-star='83' class="star"></div>
+<div data-star='84' class="star"></div>
+<div data-star='85' class="star"></div>
+<div data-star='86' class="star"></div>
+<div data-star='87' class="star"></div>
+<div data-star='88' class="star"></div>
+<div data-star='89' class="star"></div>
+<div data-star='90' class="star"></div>
+<div data-star='91' class="star"></div>
+<div data-star='92' class="star"></div>
+<div data-star='93' class="star"></div>
+<div data-star='94' class="star"></div>
+<div data-star='95' class="star"></div>
+<div data-star='96' class="star"></div>
+<div data-star='97' class="star"></div>
+<div data-star='98' class="star"></div>
+<div data-star='99' class="star"></div>
+<div data-star='100' class="star"></div>
+<div data-star='101' class="star"></div>
+<div data-star='102' class="star"></div>
+<div data-star='103' class="star"></div>
+<div data-star='104' class="star"></div>
+<div data-star='105' class="star"></div>
+<div data-star='106' class="star"></div>
+<div data-star='107' class="star"></div>
+<div data-star='108' class="star"></div>
+<div data-star='109' class="star"></div>
+<div data-star='110' class="star"></div>
+<div data-star='111' class="star"></div>
+<div data-star='112' class="star"></div>
+<div data-star='113' class="star"></div>
+<div data-star='114' class="star"></div>
+<div data-star='115' class="star"></div>
+<div data-star='116' class="star"></div>
+<div data-star='117' class="star"></div>
+<div data-star='118' class="star"></div>
+<div data-star='119' class="star"></div>
+<div data-star='120' class="star"></div>
+<div data-star='121' class="star"></div>
+<div data-star='122' class="star"></div>
+<div data-star='123' class="star"></div>
+<div data-star='124' class="star"></div>
+<div data-star='125' class="star"></div>
+<div data-star='126' class="star"></div>
+<div data-star='127' class="star"></div>
+<div data-star='128' class="star"></div>
+<div data-star='129' class="star"></div>
+<div data-star='130' class="star"></div>
+<div data-star='131' class="star"></div>
+<div data-star='132' class="star"></div>
+<div data-star='133' class="star"></div>
+<div data-star='134' class="star"></div>
+<div data-star='135' class="star"></div>
+<div data-star='136' class="star"></div>
+<div data-star='137' class="star"></div>
+<div data-star='138' class="star"></div>
+<div data-star='139' class="star"></div>
+<div data-star='140' class="star"></div>
+<div data-star='141' class="star"></div>
+<div data-star='142' class="star"></div>
+<div data-star='143' class="star"></div>
+<div data-star='144' class="star"></div>
+<div data-star='145' class="star"></div>
+<div data-star='146' class="star"></div>
+<div data-star='147' class="star"></div>
+<div data-star='148' class="star"></div>
+<div data-star='149' class="star"></div>
+<div data-star='150' class="star"></div>
+<div data-star='151' class="star"></div>
+<div data-star='152' class="star"></div>
+<div data-star='153' class="star"></div>
+<div data-star='154' class="star"></div>
+<div data-star='155' class="star"></div>
+<div data-star='156' class="star"></div>
+<div data-star='157' class="star"></div>
+<div data-star='158' class="star"></div>
+<div data-star='159' class="star"></div>
+<div data-star='160' class="star"></div>
+<div data-star='161' class="star"></div>
+<div data-star='162' class="star"></div>
+<div data-star='163' class="star"></div>
+<div data-star='164' class="star"></div>
+<div data-star='165' class="star"></div>
+<div data-star='166' class="star"></div>
+<div data-star='167' class="star"></div>
+<div data-star='168' class="star"></div>
+<div data-star='169' class="star"></div>
+<div data-star='170' class="star"></div>
+<div data-star='171' class="star"></div>
+<div data-star='172' class="star"></div>
+<div data-star='173' class="star"></div>
+<div data-star='174' class="star"></div>
+<div data-star='175' class="star"></div>
+<div data-star='176' class="star"></div>
+<div data-star='177' class="star"></div>
+<div data-star='178' class="star"></div>
+<div data-star='179' class="star"></div>
+<div data-star='180' class="star"></div>
+<div data-star='181' class="star"></div>
+<div data-star='182' class="star"></div>
+<div data-star='183' class="star"></div>
+<div data-star='184' class="star"></div>
+<div data-star='185' class="star"></div>
+<div data-star='186' class="star"></div>
+<div data-star='187' class="star"></div>
+<div data-star='188' class="star"></div>
+<div data-star='189' class="star"></div>
+<div data-star='190' class="star"></div>
+<div data-star='191' class="star"></div>
+<div data-star='192' class="star"></div>
+<div data-star='193' class="star"></div>
+<div data-star='194' class="star"></div>
+<div data-star='195' class="star"></div>
+<div data-star='196' class="star"></div>
+<div data-star='197' class="star"></div>
+<div data-star='198' class="star"></div>
+<div data-star='199' class="star"></div>
+<div data-star='200' class="star"></div>
+<div data-star='201' class="star"></div>
+<div data-star='202' class="star"></div>
+<div data-star='203' class="star"></div>
+<div data-star='204' class="star"></div>
+<div data-star='205' class="star"></div>
+<div data-star='206' class="star"></div>
+<div data-star='207' class="star"></div>
+<div data-star='208' class="star"></div>
+<div data-star='209' class="star"></div>
+<div data-star='210' class="star"></div>
+<div data-star='211' class="star"></div>
+<div data-star='212' class="star"></div>
+<div data-star='213' class="star"></div>
+<div data-star='214' class="star"></div>
+<div data-star='215' class="star"></div>
+<div data-star='216' class="star"></div>
+<div data-star='217' class="star"></div>
+<div data-star='218' class="star"></div>
+<div data-star='219' class="star"></div>
+<div data-star='220' class="star"></div>
+<div data-star='221' class="star"></div>
+<div data-star='222' class="star"></div>
+<div data-star='223' class="star"></div>
+<div data-star='224' class="star"></div>
+<div data-star='225' class="star"></div>
+<div data-star='226' class="star"></div>
+<div data-star='227' class="star"></div>
+<div data-star='228' class="star"></div>
+<div data-star='229' class="star"></div>
+<div data-star='230' class="star"></div>
+<div data-star='231' class="star"></div>
+<div data-star='232' class="star"></div>
+<div data-star='233' class="star"></div>
+<div data-star='234' class="star"></div>
+<div data-star='235' class="star"></div>
+<div data-star='236' class="star"></div>
+<div data-star='237' class="star"></div>
+<div data-star='238' class="star"></div>
+<div data-star='239' class="star"></div>
+<div data-star='240' class="star"></div>
+<div data-star='241' class="star"></div>
+<div data-star='242' class="star"></div>
+<div data-star='243' class="star"></div>
+<div data-star='244' class="star"></div>
+<div data-star='245' class="star"></div>
+<div data-star='246' class="star"></div>
+<div data-star='247' class="star"></div>
+<div data-star='248' class="star"></div>
+<div data-star='249' class="star"></div>
+<div data-star='250' class="star"></div>
+<div data-star='251' class="star"></div>
+<div data-star='252' class="star"></div>
+<div data-star='253' class="star"></div>
+<div data-star='254' class="star"></div>
+<div data-star='255' class="star"></div>
+<div data-star='256' class="star"></div>
+<div data-star='257' class="star"></div>
+<div data-star='258' class="star"></div>
+<div data-star='259' class="star"></div>
+<div data-star='260' class="star"></div>
+<div data-star='261' class="star"></div>
+<div data-star='262' class="star"></div>
+<div data-star='263' class="star"></div>
+<div data-star='264' class="star"></div>
+<div data-star='265' class="star"></div>
+<div data-star='266' class="star"></div>
+<div data-star='267' class="star"></div>
+<div data-star='268' class="star"></div>
+<div data-star='269' class="star"></div>
+<div data-star='270' class="star"></div>
+<div data-star='271' class="star"></div>
+<div data-star='272' class="star"></div>
+<div data-star='273' class="star"></div>
+<div data-star='274' class="star"></div>
+<div data-star='275' class="star"></div>
+<div data-star='276' class="star"></div>
+<div data-star='277' class="star"></div>
+<div data-star='278' class="star"></div>
+<div data-star='279' class="star"></div>
+<div data-star='280' class="star"></div>
+<div data-star='281' class="star"></div>
+<div data-star='282' class="star"></div>
+<div data-star='283' class="star"></div>
+<div data-star='284' class="star"></div>
+<div data-star='285' class="star"></div>
+<div data-star='286' class="star"></div>
+<div data-star='287' class="star"></div>
+<div data-star='288' class="star"></div>
+<div data-star='289' class="star"></div>
+<div data-star='290' class="star"></div>
+<div data-star='291' class="star"></div>
+<div data-star='292' class="star"></div>
+<div data-star='293' class="star"></div>
+<div data-star='294' class="star"></div>
+<div data-star='295' class="star"></div>
+<div data-star='296' class="star"></div>
+<div data-star='297' class="star"></div>
+<div data-star='298' class="star"></div>
+<div data-star='299' class="star"></div>
+<div data-star='300' class="star"></div>
+<div data-star='301' class="star"></div>
+<div data-star='302' class="star"></div>
+<div data-star='303' class="star"></div>
+<div data-star='304' class="star"></div>
+<div data-star='305' class="star"></div>
+<div data-star='306' class="star"></div>
+<div data-star='307' class="star"></div>
+<div data-star='308' class="star"></div>
+<div data-star='309' class="star"></div>
+<div data-star='310' class="star"></div>
+<div data-star='311' class="star"></div>
+<div data-star='312' class="star"></div>
+<div data-star='313' class="star"></div>
+<div data-star='314' class="star"></div>
+<div data-star='315' class="star"></div>
+<div data-star='316' class="star"></div>
+<div data-star='317' class="star"></div>
+<div data-star='318' class="star"></div>
+<div data-star='319' class="star"></div>
+<div data-star='320' class="star"></div>
+<div data-star='321' class="star"></div>
+<div data-star='322' class="star"></div>
+<div data-star='323' class="star"></div>
+<div data-star='324' class="star"></div>
+<div data-star='325' class="star"></div>
+<div data-star='326' class="star"></div>
+<div data-star='327' class="star"></div>
+<div data-star='328' class="star"></div>
+<div data-star='329' class="star"></div>
+<div data-star='330' class="star"></div>
+<div data-star='331' class="star"></div>
+<div data-star='332' class="star"></div>
+<div data-star='333' class="star"></div>
+<div data-star='334' class="star"></div>
+<div data-star='335' class="star"></div>
+<div data-star='336' class="star"></div>
+<div data-star='337' class="star"></div>
+<div data-star='338' class="star"></div>
+<div data-star='339' class="star"></div>
+<div data-star='340' class="star"></div>
+<div data-star='341' class="star"></div>
+<div data-star='342' class="star"></div>
+<div data-star='343' class="star"></div>
+<div data-star='344' class="star"></div>
+<div data-star='345' class="star"></div>
+<div data-star='346' class="star"></div>
+<div data-star='347' class="star"></div>
+<div data-star='348' class="star"></div>
+<div data-star='349' class="star"></div>
+<div data-star='350' class="star"></div>
+<div data-star='351' class="star"></div>
+<div data-star='352' class="star"></div>
+<div data-star='353' class="star"></div>
+<div data-star='354' class="star"></div>
+<div data-star='355' class="star"></div>
+<div data-star='356' class="star"></div>
+<div data-star='357' class="star"></div>
+<div data-star='358' class="star"></div>
+<div data-star='359' class="star"></div>
+<div data-star='360' class="star"></div>
+<div data-star='361' class="star"></div>
+<div data-star='362' class="star"></div>
+<div data-star='363' class="star"></div>
+<div data-star='364' class="star"></div>
+<div data-star='365' class="star"></div>
+<div data-star='366' class="star"></div>
+<div data-star='367' class="star"></div>
+<div data-star='368' class="star"></div>
+<div data-star='369' class="star"></div>
+<div data-star='370' class="star"></div>
+<div data-star='371' class="star"></div>
+<div data-star='372' class="star"></div>
+<div data-star='373' class="star"></div>
+<div data-star='374' class="star"></div>
+<div data-star='375' class="star"></div>
+<div data-star='376' class="star"></div>
+<div data-star='377' class="star"></div>
+<div data-star='378' class="star"></div>
+<div data-star='379' class="star"></div>
+<div data-star='380' class="star"></div>
+<div data-star='381' class="star"></div>
+<div data-star='382' class="star"></div>
+<div data-star='383' class="star"></div>
+<div data-star='384' class="star"></div>
+<div data-star='385' class="star"></div>
+<div data-star='386' class="star"></div>
+<div data-star='387' class="star"></div>
+<div data-star='388' class="star"></div>
+<div data-star='389' class="star"></div>
+<div data-star='390' class="star"></div>
+<div data-star='391' class="star"></div>
+<div data-star='392' class="star"></div>
+<div data-star='393' class="star"></div>
+<div data-star='394' class="star"></div>
+<div data-star='395' class="star"></div>
+<div data-star='396' class="star"></div>
+<div data-star='397' class="star"></div>
+<div data-star='398' class="star"></div>
+<div data-star='399' class="star"></div>
+<div data-star='400' class="star"></div>
+<div data-star='401' class="star"></div>
+<div data-star='402' class="star"></div>
+<div data-star='403' class="star"></div>
+<div data-star='404' class="star"></div>
+<div data-star='405' class="star"></div>
+<div data-star='406' class="star"></div>
+<div data-star='407' class="star"></div>
+<div data-star='408' class="star"></div>
+<div data-star='409' class="star"></div>
+<div data-star='410' class="star"></div>
+<div data-star='411' class="star"></div>
+<div data-star='412' class="star"></div>
+<div data-star='413' class="star"></div>
+<div data-star='414' class="star"></div>
+<div data-star='415' class="star"></div>
+<div data-star='416' class="star"></div>
+<div data-star='417' class="star"></div>
+<div data-star='418' class="star"></div>
+<div data-star='419' class="star"></div>
+<div data-star='420' class="star"></div>
+<div data-star='421' class="star"></div>
+<div data-star='422' class="star"></div>
+<div data-star='423' class="star"></div>
+<div data-star='424' class="star"></div>
+<div data-star='425' class="star"></div>
+<div data-star='426' class="star"></div>
+<div data-star='427' class="star"></div>
+<div data-star='428' class="star"></div>
+<div data-star='429' class="star"></div>
+<div data-star='430' class="star"></div>
+<div data-star='431' class="star"></div>
+<div data-star='432' class="star"></div>
+<div data-star='433' class="star"></div>
+<div data-star='434' class="star"></div>
+<div data-star='435' class="star"></div>
+<div data-star='436' class="star"></div>
+<div data-star='437' class="star"></div>
+<div data-star='438' class="star"></div>
+<div data-star='439' class="star"></div>
+<div data-star='440' class="star"></div>
+<div data-star='441' class="star"></div>
+<div data-star='442' class="star"></div>
+<div data-star='443' class="star"></div>
+<div data-star='444' class="star"></div>
+<div data-star='445' class="star"></div>
+<div data-star='446' class="star"></div>
+<div data-star='447' class="star"></div>
+<div data-star='448' class="star"></div>
+<div data-star='449' class="star"></div>
+<div data-star='450' class="star"></div>
+</div>
+<div class="day">
+    <div data-cloud='1' class="cloud"></div>
+    <div data-cloud='2' class="cloud"></div>
+    <div data-cloud='3' class="cloud"></div>
+    <div data-cloud='4' class="cloud"></div>
+    <div data-cloud='5' class="cloud"></div>
+    <div data-cloud='6' class="cloud"></div>
+    <div data-cloud='7' class="cloud"></div>
+    <div data-cloud='8' class="cloud"></div>
+    <div data-cloud='9' class="cloud"></div>
+    <div data-cloud='10' class="cloud"></div>
+    <div data-cloud='11' class="cloud"></div>
+    <div data-cloud='12' class="cloud"></div>
+    <div data-cloud='13' class="cloud"></div>
+    <div data-cloud='14' class="cloud"></div>
+    <div data-cloud='15' class="cloud"></div>
+    <div data-cloud='16' class="cloud"></div>
+    <div data-cloud='17' class="cloud"></div>
+    <div data-cloud='18' class="cloud"></div>
+    <div data-cloud='19' class="cloud"></div>
+    <div data-cloud='20' class="cloud"></div>
+    <div data-cloud='21' class="cloud"></div>
+    <div data-cloud='22' class="cloud"></div>
+    <div data-cloud='23' class="cloud"></div>
+    <div data-cloud='24' class="cloud"></div>
+    <div data-cloud='25' class="cloud"></div>
+    <div data-cloud='26' class="cloud"></div>
+    <div data-cloud='27' class="cloud"></div>
+    <div data-cloud='28' class="cloud"></div>
+    <div data-cloud='29' class="cloud"></div>
+    <div data-cloud='30' class="cloud"></div>
+    <div data-cloud='31' class="cloud"></div>
+    <div data-cloud='32' class="cloud"></div>
+    <div data-cloud='33' class="cloud"></div>
+    <div data-cloud='34' class="cloud"></div>
+    <div data-cloud='35' class="cloud"></div>
+    <div data-cloud='36' class="cloud"></div>
+    <div data-cloud='37' class="cloud"></div>
+    <div data-cloud='38' class="cloud"></div>
+    <div data-cloud='39' class="cloud"></div>
+    <div data-cloud='40' class="cloud"></div>
+    <div data-cloud='41' class="cloud"></div>
+    <div data-cloud='42' class="cloud"></div>
+    <div data-cloud='43' class="cloud"></div>
+    <div data-cloud='44' class="cloud"></div>
+    <div data-cloud='45' class="cloud"></div>
+    <div data-cloud='46' class="cloud"></div>
+    <div data-cloud='47' class="cloud"></div>
+    <div data-cloud='48' class="cloud"></div>
+    <div data-cloud='49' class="cloud"></div>
+    <div data-cloud='50' class="cloud"></div>
+</div>
+</section>
+</body>
+</html>

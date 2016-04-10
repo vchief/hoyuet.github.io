@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        @charset "utf-8";
+        html {
+            background-color: gray;
+        }
+
+        ul {
+            width: 100%;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            position: absolute;
+            text-align: center;
+            font-size: 0;
+            left: 0;
+            top: 50%;
+        }
+        ul li {
+            display: inline-block;
+            position: relative;
+            text-align: center;
+            line-height: 15vw;
+            margin: 2vw 0;
+            height: 15vw;
+            width: 15vw;
+        }
+        @media screen and (orientation: landscape) {
+            ul li {
+                line-height: 15vh;
+                margin: 2vh 0;
+                height: 15vh;
+                width: 15vh;
+            }
+        }
+        ul li:before, ul li:after {
+            -webkit-transition: -webkit-transform 0.25s ease-in-out;
+            transition: -webkit-transform 0.25s ease-in-out;
+            transition: transform 0.25s ease-in-out;
+            transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+            content: attr(data-letter);
+            font-family: sans-serif;
+            font-weight: 100;
+            font-size: 3vw;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+        }
+        @media screen and (orientation: landscape) {
+            ul li:before, ul li:after {
+                font-size: 3vh;
+            }
+        }
+        ul li[data-letter=" "] {
+            opacity: 0;
+        }
+        ul li:before {
+            -webkit-transform-origin: top center;
+            transform-origin: top center;
+            -webkit-transform: translate(0, 100%) rotateX(-90deg);
+            transform: translate(0, 100%) rotateX(-90deg);
+            background-color: black;
+            z-index: 1;
+            color: white;
+        }
+        ul li:after {
+            -webkit-transform: translate(0, 0) rotateX(0deg);
+            transform: translate(0, 0) rotateX(0deg);
+            -webkit-transform-origin: bottom center;
+            transform-origin: bottom center;
+            background-color: white;
+            z-index: 1;
+            color: black;
+        }
+        ul li:nth-of-type(10n+1):before {
+            -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+        }
+        ul li:nth-of-type(10n+2):before {
+            -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
+        }
+        ul li:nth-of-type(10n+3):before {
+            -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+        }
+        ul li:nth-of-type(10n+4):before {
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        ul li:nth-of-type(10n+5):before {
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+        ul li:nth-of-type(10n+6):before {
+            -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+        }
+        ul li:nth-of-type(10n+7):before {
+            -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+        }
+        ul li:nth-of-type(10n+8):before {
+            -webkit-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+        }
+        ul li:nth-of-type(10n+9):before {
+            -webkit-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+        }
+        ul li:nth-of-type(10n+10):before {
+            -webkit-transition-delay: 0.45s;
+            transition-delay: 0.45s;
+        }
+        ul li:nth-of-type(10n+1):after {
+            -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+        }
+        ul li:nth-of-type(10n+2):after {
+            -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
+        }
+        ul li:nth-of-type(10n+3):after {
+            -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+        }
+        ul li:nth-of-type(10n+4):after {
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+        ul li:nth-of-type(10n+5):after {
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+        ul li:nth-of-type(10n+6):after {
+            -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+        }
+        ul li:nth-of-type(10n+7):after {
+            -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+        }
+        ul li:nth-of-type(10n+8):after {
+            -webkit-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+        }
+        ul li:nth-of-type(10n+9):after {
+            -webkit-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+        }
+        ul li:nth-of-type(10n+10):after {
+            -webkit-transition-delay: 0.45s;
+            transition-delay: 0.45s;
+        }
+
+        html.active ul li:before {
+            -webkit-transform: translate(0, 0) rotateX(0deg);
+            transform: translate(0, 0) rotateX(0deg);
+            z-index: 2;
+        }
+        html.active ul li:after {
+            -webkit-transform: translate(0, -100%) rotateX(90deg);
+            transform: translate(0, -100%) rotateX(90deg);
+            z-index: 1;
+        }
+        html.active ul li:after[data-letter=" "] {
+            opacity: 0;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload=function(){
+            (function() {
+                setInterval((function(_this) {
+                    return function() {
+                        return document.querySelector("html").classList.toggle("active");
+                    };
+                })(this), 1000);
+
+            }).call(this);
+        };
+    </script>
+</head>
+<body>
+<meta charset="utf-8">
+<ul>
+    <li data-letter="J"></li>
+    <li data-letter="Q"></li>
+    <li data-letter="U"></li>
+    <li data-letter="E"></li>
+    <li data-letter="R"></li>
+    <li data-letter="Y"></li>
+    <br />
+    <li data-letter="j"></li>
+    <li data-letter="q"></li>
+    <li data-letter="2"></li>
+    <li data-letter="2"></li>
+    <li data-letter="."></li>
+    <li data-letter="c"></li>
+    <li data-letter="o"></li>
+    <li data-letter="m"></li>
+</ul></body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>多图展示</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 366px;
+            margin: 50px auto;
+        }
+        ul li{
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 10px;
+            background-size: cover;
+
+            transition: 1s all ease;
+        }
+
+    </style>
+    <script>
+        window.onload=function(){
+            var oUl=document.querySelector('ul');
+            for(var i=0;i<9;i++)
+            {
+                var oLi=document.createElement('li');
+                oUl.appendChild(oLi);
+            }
+
+            var aLi=oUl.children;
+            for(var i=0;i<aLi.length;i++)
+            {
+                aLi[i].style.background='url(img1/'+i+'.jpg) no-repeat';
+
+            }
+            for (var i=0;i<aLi.length;i++)
+            {
+                (function(index){
+                    aLi[index].onmouseover=function(){
+                        this.style.zIndex=100;
+                        this.style.transform='scale(1.5)';
+                    }
+                })(i);
+                (function(index){
+                    aLi[index].onmouseout=function(){
+                        this.style.zIndex=1;
+                        this.style.transform='scale(1)';
+                    }
+                })(i);
+            }
+        };
+    </script>
+</head>
+<body>
+<ul>
+</ul>
+</body>
+</html>
