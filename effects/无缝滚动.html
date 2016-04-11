@@ -1,0 +1,131 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="智能社 - zhinengshe.com">
+    <meta name="copyright" content="智能社 - zhinengshe.com">
+    <title>智能社 - www.zhinengshe.com</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        div {
+            overflow:hidden;
+            position:relative;
+            width:520px;
+            height:130px;
+            border:1px solid red;
+            margin:150px auto;
+        }
+        ul {
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        li {
+            float:left;
+            width:110px;
+            height:110px;
+            padding:10px;
+        }
+        img {
+            display:block;
+            width:100%;
+            height: 100%;
+        }
+
+        a {
+            position:absolute;
+            top:0; width:50%;
+            height:100%;
+        }
+        #prev { left:0; }
+        #next { right:0; }
+    </style>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            var str=$('#ul1').html();
+            $('#ul1').html(str+str);
+            //重新设置oUl的宽度
+            var aLi=$('#ul1').children();
+            var w=aLi.eq(0).outerWidth()*aLi.size();
+            $('#ul1').css('width',w+'px');
+
+            //初始值
+            var left=0;
+            var timer=null;
+            $('#prev').mouseover(function(){
+                timer=setInterval(function(){
+                    left-=4;
+                    if(left<0)
+                    {
+                        $('#ul1').css('left', left % (w / 2) + 'px');
+                    }
+                    else{
+                        $('#ul1').css('left', left % (w / 2) - w / 2 + 'px');
+                    }
+
+                },30);
+            });
+            $('#next').mouseover(function(){
+                timer = setInterval(function ()
+                {
+                    left += 4;
+                    if (left > 0) {
+                        $('#ul1').css('left', left % (w / 2) - w / 2 + 'px');
+                    }
+                    else{
+                        $('#ul1').css('left', left % (w / 2) + 'px');
+                    }
+                },30);
+
+            });
+            $('#prev').mouseout(function(){
+                clearInterval(timer);
+            });
+            $('#next').mouseout(function(){
+                clearInterval(timer);
+            });
+
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+<div>
+    <ul id="ul1">
+        <li><img src="img/0.jpg" /></li>
+        <li><img src="img/1.jpg" /></li>
+        <li><img src="img/2.jpg" /></li>
+        <li><img src="img/3.jpg" /></li>
+    </ul>
+
+    <a href="javascript:;" id="prev"></a>
+    <a href="javascript:;" id="next"></a>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>立方体</title>
+    <style>
+        .cubic{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            margin-left: -100px;
+            margin-top: -100px;
+
+
+            /*transition:1s all linear;*/
+            transform:perspective(800px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+
+            transform-style: preserve-3d;
+        }
+        .cubic div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+        }
+        .front{
+            background: indianred;
+            transform: translateZ(100px);
+        }
+        .back{
+            background: green;
+            transform:translateZ(-100px);
+
+        }
+        .left{
+            background: yellow;
+            transform: translateX(-100px) rotateY(-90deg);
+
+
+        }
+        .right{
+            background: blue;
+            transform: translateX(100px) rotateY(90deg);
+
+        }
+        .up{
+            background: fuchsia;
+            transform: translateY(-100px) rotateX(90deg);
+        }
+
+
+        }
+        .down{
+            background: darkcyan;
+            transform: translateY(100px) rotateX(-90deg);
+
+
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oCubic=document.querySelector('.cubic');
+            var count=780;
+            oCubic.style.transition='10s all linear';
+            oCubic.style.transform='perspective(800px) rotateY('+count+'deg) rotateX('+count+'deg) rotateZ('+count+'deg)';
+
+
+        };
+    </script>
+</head>
+<body>
+<div class="cubic">
+    <div class="front"></div>
+    <div class="back"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="up"></div>
+    <div class="down"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取地理信息</title>
+    <script>
+        if(navigator.geolocation){
+            var timer=navigator.geolocation.watchPosition(function(ev){
+                //获取成功了
+                var longitute=ev.coords.longitude;
+                var latitude=ev.coords.latitude;
+                alert(longitute+','+latitude);
+                },function(err){
+                    //获取失败了
+                    alert('获取失败了');
+                   },{
+                         //刷新频率
+                         frequency:1000
+                 });
+            document.onclick=function(){
+                //关闭实时获取
+                navigator.geolocation.clearWatch(timer);
+            };
+        }else{
+            alert('不支持地理定位');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
